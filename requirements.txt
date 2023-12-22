@@ -2,3 +2,5 @@ django-allauth
 django-htmx
 crispy-bootstrap5
 django-crispy-forms
+django-filter
+pillow
