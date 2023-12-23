@@ -1,0 +1,19 @@
+{% load static %}
+<div class="col-md-4">
+    <div class="card">
+        {% if product.image %}
+        <img class="card-img-top product-img" src="{{product.image.url}}" alt="{{product.name}}">
+        {% else %}
+        <img class="card-img-top product-img" src="{% static 'images/default_product.jpg' %}" alt="{{product.name}}">
+        {% endif %}
+        <div class="card-body">
+            <h5 class="card-title">{{product.name}}</h5>
+            <p class="card-text">
+                <span class="text-primary fw-bold">₹{{product.sprice}}</span>
+                <small class="text-decoration-line-through">
+                    ₹{{product.oprice}}
+                </small>
+            </p>
+        </div>
+    </div>
+</div>

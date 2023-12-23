@@ -6,12 +6,19 @@ def all_products(request):
     f = ProductFilter(request.GET, queryset=Product.objects.all())
     return render(request,'shop/products.html',{
         'filter': f,
-        'brands': Brand.objects.all(),
+        'brands': Brand.objects.filter(favorite=True),
         'categories': Category.objects.all()
     })
 
 def brand_products(request, brand):
-    pass
+    brandObj = Brand.objects.get(slug=brand)
+    products=Product.objects.filter(brand=brandObj)
+    return render(request,'shop/brand_products.html',{
+        'brand': brandObj,
+        'products': products,
+        'brands': Brand.objects.all(),
+        'categories': Category.objects.all()
+    })
 
 def category_products(request, category):
     pass

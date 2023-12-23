@@ -10,6 +10,7 @@ class Brand(models.Model):
     slug = models.SlugField(max_length=60, unique=True)
     logo = models.ImageField(upload_to='brand/logo', blank=True, null=True)
     banner = models.ImageField(upload_to='brand/banner', blank=True, null=True)
+    favorite = models.BooleanField(default=False)
     def __str__(self):
         return self.name
 class Seller(models.Model):
