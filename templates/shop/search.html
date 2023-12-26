@@ -1,0 +1,108 @@
+{% extends 'layout/base.html' %}
+{% load static %}
+{% load crispy_forms_tags %}
+{% block css %}
+<style>
+    body {
+        background-color: rgb(240, 242, 244);
+    }
+</style>
+{% endblock %}
+{% block body %}
+<div class="p-5 mb-4 bg-light rounded-3">
+    <div class="container-fluid py-5">
+        <h1 class="display-5 fw-bold">
+            Search: '{{q}}'
+        </h1>
+        <p class="col-md-8 fs-4">
+            Total products: <strong>{{products.count}} result(s) found</strong>
+        </p>
+    </div>
+</div>
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-lg-8 col-md-8 mx-auto">
+            <form action="{% url 'search_products' %}" class="d-flex">
+                <input type="search" name="q" id="q" class="form-control me-2" placeholder="Search...">
+                <button type="submit" class="btn btn-primary mt-2">
+                    Search
+                </button>
+            </form>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-8 mx-auto py-1">
+            <div class="table-responsive card">
+                <table class="table table-light table-hover ">
+                    <thead>
+                        <tr>
+                            <th scope="col">Image</th>
+                            <th scope="col">Name</th>
+                            <th scope="col">Brand</th>
+                            <th scope="col">Category</th>
+                            <th scope="col">Price</th>
+                            <th scope="col">Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+
+                        {% for product in products %}
+                        <tr>
+                            <td scope="row">
+
+                                {% if product.image %}
+                                <img src="{{product.image.url}}" class="table-thumb" height="100"
+                                    alt="{{product.name}}" />
+                                {% endif %}
+
+                            </td>
+                            <td><strong>{{product.name|title}}</strong></td>
+                            <td>{{product.brand|title}}</td>
+                            <td>{{product.category|title}}</td>
+                            <td>{{product.sprice}}</td>
+                            <td>
+                                <a href="#" class="btn">View</a>
+                                <a href="#" class="btn btn-success">Add to Cart</a>
+                            </td>
+                        </tr>
+                        {% empty %}
+                        <tr>
+                            <td colspan="5" class="text-center display-5 text-danger">
+                                No Products Available
+                            </td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-8 mx-auto">
+            <strong>Brands:</strong>
+            {% for brand in brands %}
+                <a class="badge text-bg-dark text-decoration-none" href="{% url 'brand_products' brand.slug %}">
+                    {{brand.name}}
+                </a>
+            {% empty %}
+                <span>No Brands with '{{q}}'</span>
+            {% endfor %}
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-8 mx-auto">
+            <strong>Categories:</strong>
+            {% for cat in categories %}
+                <a class="badge text-bg-dark text-decoration-none" href="{% url 'category_products' cat.slug %}">
+                    {{cat.name}}
+                </a>
+            {% empty %}
+                <span>No Categories with '{{q}}'</span>
+            {% endfor %}
+        </div>
+    </div>
+</div>
+
+
+{% endblock %}

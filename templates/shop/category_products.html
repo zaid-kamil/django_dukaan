@@ -25,13 +25,10 @@
 {% endblock css %}
 
 {% block body %}
-<div class="container-fluid px-0">
-    {% if brand.banner %}
-    <div class="img-wrapper">
-        <img src="{{brand.banner.url}}" alt="{{brand.name}}" class="banner-img">
-    </div>        
-    {% else %}
-    {% endif %}        
+<div class="container-fluid px-0 py-4 bg-info">
+    <h1 class="text-center display-1 text-white">
+        {{category.name}} products
+    </h1>        
 </div>
 <div class="container py-5">
     <div class="row">
