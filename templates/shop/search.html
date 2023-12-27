@@ -61,7 +61,7 @@
                             <td>{{product.category|title}}</td>
                             <td>{{product.sprice}}</td>
                             <td>
-                                <a href="#" class="btn">View</a>
+                                <a href="{% url 'product_detail' product.slug %}" class="btn">View</a>
                                 <a href="#" class="btn btn-success">Add to Cart</a>
                             </td>
                         </tr>

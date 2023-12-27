@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from .models import Product, Brand, Category
+from .models import Product, Brand, Category, ProductImage, ProductReview
 from .filters import ProductFilter
 from django.contrib import messages
 
@@ -44,4 +44,18 @@ def search_products(request):
         'brands': Brand.objects.filter(name__icontains=q),
         'categories': Category.objects.filter(name__icontains=q),
         'q': q,
+    })
+
+def product_detail(request, slug):
+    product = Product.objects.get(slug=slug)
+    sim_cat_products = Product.objects.filter(category=product.category).exclude(slug=slug).order_by('?')[:2] # order by random
+    # todo sim_prod_brand
+    reviews = ProductReview.objects.filter(product=product)
+    images =  ProductImage.objects.filter(product=product)
+
+    return render(request,'shop/product_detail.html',{
+        'product': product,
+        'images': images,
+        'reviews': reviews,
+        'sim_cat_products': sim_cat_products,
     })
