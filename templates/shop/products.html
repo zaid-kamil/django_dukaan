@@ -23,16 +23,15 @@
         <a href="{% url 'brand_products' brand.slug %}" class="badge d-flex align-items-center p-1 
             pe-2 text-primary-emphasis bg-primary-subtle 
             border border-primary-subtle rounded-pill text-decoration-none">
-            
+
             {% if brand.logo %}
-            <img class="rounded-circle me-1" width="24" 
-            height="24" src="{{brand.logo.url}}" alt="">{{brand.name|title}}   
+            <img class="rounded-circle me-1" width="24" height="24" src="{{brand.logo.url}}" alt="">{{brand.name|title}}
             {% else %}
-            <img class="rounded-circle me-1" width="24" 
-            height="24" src="{% static 'images/default_brand.gif' %}" alt="">{{brand.name|title}}
+            <img class="rounded-circle me-1" width="24" height="24" src="{% static 'images/default_brand.gif' %}"
+                alt="">{{brand.name|title}}
             {% endif %}
-                
-    </a>
+
+        </a>
         {% empty %}
         <span class="badge d-flex align-items-center p-1 pe-2 text-danger-emphasis 
             bg-danger-subtle border border-danger-subtle rounded-pill">
@@ -45,14 +44,19 @@
 </div>
 <div class="container py-5">
     <div class="row">
-        <div class="col">
-            <form method="get">
+        <div class="col sidebar ">
+            <form method="get" id="product-filter-form">
                 {{filter.form|crispy}}
                 <input type="submit" class="btn btn-primary" value="filter">
             </form>
         </div>
         <div class="col-md-9">
             <div class="container-fluid">
+                <div class="row">
+                    <div class="col">
+                        <button id="show-btn" class="btn btn-dark btn-sm">Show Filter</button>
+                    </div>
+                </div>
                 <div class="row">
                     {% for item in filter.qs %}
                     {% include 'components/product_card.html' with product=item %}
@@ -66,4 +70,8 @@
         </div>
     </div>
 </div>
+{% endblock %}
+
+{% block js %}
+<script src="{% static 'js/toggle_filter_view.js' %}"></script>
 {% endblock %}

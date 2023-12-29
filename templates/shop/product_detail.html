@@ -6,6 +6,11 @@
     body {
         background-color: #fefefe;
     }
+    .product-img {
+        height: 300px;
+        object-fit: cover;
+        object-position: top;
+    }
 </style>
 {% endblock %}
 {% block body %}
@@ -78,16 +83,10 @@
             </div>
         </div>
     </div>
+    
     <div class="row">
-        <div class="col-md-4">
-
-            {% for item in sim_cat_products %}
-            {% include 'components/product_card.html' with product=item %}
-            {% empty %}
-            <h4 class="text-center text-danger">No similar category products found</h4>
-            {% endfor %}
-        </div>
-        <div class="col-md-8 py-2">
+        <div class="col-md-8 py-2 offset-md-4">
+            <h1></h1>
             {% for item in reviews %}
             <div class="card">
                 <div class="card-body">
@@ -107,6 +106,14 @@
             </div>
             {% endfor %}
         </div>
+    </div>
+    <div class="row">
+        <h1>Similar Products</h1>
+        {% for item in sim_cat_products %}
+        {% include 'components/product_card.html' with product=item %}
+        {% empty %}
+        <h4 class="text-center text-danger">No similar category products found</h4>
+        {% endfor %}
     </div>
 </div>
 {% endblock %}
