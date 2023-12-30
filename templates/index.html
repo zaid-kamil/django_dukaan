@@ -1,5 +1,81 @@
 {% extends 'layout/base.html' %}
+{% load static %}
+
+{% block css %}
+<style>
+    .slider-top .card {}
+
+    .slider-top img {
+        object-fit: cover;
+        height: 400px;
+    }
+
+    .slider-top .card-body {
+        text-align: center;
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%, -50%);
+        font-size: 5rem;
+    }
+</style>
+{% endblock css %}
+
 {% block body %}
-    
+<div class="container">
+    <div class="row">
+        <div class="col">
+            <div class="slider-top">
+                <div class="card">
+                    <img class="card-img-top" src="{% static 'images/image1.jpg' %}" alt="Title" />
+                    <div class="card-body">
+                        <h4 class="card-title">Title</h4>
+                        <a name="" id="" class="btn btn-primary" href="#" role="button">Button</a>
+                    </div>
+                </div>
+                <div class="card">
+                    <img class="card-img-top" src="{% static 'images/image2.jpg' %}" alt="Title" />
+                    <div class="card-body">
+                        <h4 class="card-title">Title</h4>
+                        <a name="" id="" class="btn btn-primary" href="#" role="button">Button</a>
+                    </div>
+                </div>
+                <div class="card">
+                    <img class="card-img-top" src="{% static 'images/image3.jpg' %}" alt="Title" />
+                    <div class="card-body">
+                        <h4 class="card-title">Title</h4>
+                        <a name="" id="" class="btn btn-primary" href="#" role="button">Button</a>
+                    </div>
+                </div>
+                <div class="card">
+                    <img class="card-img-top" src="{% static 'images/image4.jpg' %}" alt="Title" />
+                    <div class="card-body">
+                        <h4 class="card-title">Title</h4>
+                        <a name="" id="" class="btn btn-primary" href="#" role="button">Button</a>
+                    </div>
+                </div>
+                <div class="card">
+                    <img class="card-img-top" src="{% static 'images/image5.jpg' %}" alt="Title" />
+                    <div class="card-body">
+                        <h4 class="card-title">Title</h4>
+                        <a name="" id="" class="btn btn-primary" href="#" role="button">Button</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
 {% endblock body %}
-    
+{% block js %}
+<script>
+    // when all javascript is loaded
+    $(document).ready(() => {
+        $('.slider-top').slick({
+            dots: true,
+            autoplay: true,
+            autoplaySpeed: 1200, // 1 second
+        })
+    })
+</script>
+{% endblock %}

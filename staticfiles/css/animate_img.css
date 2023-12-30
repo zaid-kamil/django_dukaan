@@ -1,0 +1,6 @@
+.product-img{
+    scale: 1;
+    transition: 0.5s;
+    filter: grayscale(100%);
+}
+
